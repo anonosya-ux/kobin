@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Максим Кобин | Выход из зависимости — по-взрослому</title>
+  <meta name="description" content="Стратегия выхода из зависимости: психология + дисциплина + восстановление тела. Анонимно. Москва/онлайн. Заявки сразу в Telegram." />
+
+  <style>
+    :root{
+      --bg:#050505;
+      --card:#121212;
+      --line:#222;
+      --accent:#5b4dd4;
+      --accentGlow:rgba(91,77,212,.5);
+      --text:#fff;
+      --muted:#a0a0a0;
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:var(--font);
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    .container{max-width:1280px;margin:0 auto;padding:0 24px;position:relative;z-index:2;}
+    section{padding:96px 0;position:relative;}
+    h1,h2,h3,h4{font-weight:800;line-height:1.08;letter-spacing:-.03em;}
+    h1{font-size:clamp(2.6rem,5vw,4.8rem);margin-bottom:18px;}
+    h2{font-size:clamp(2rem,4vw,3.1rem);margin-bottom:14px;}
+    h3{font-size:1.25rem;margin-bottom:10px;}
+    p{color:var(--muted);font-size:1.08rem;margin-bottom:18px;max-width:70ch;}
+    .muted{color:var(--muted);}
+    .eyebrow{
+      display:inline-block;
+      color:var(--accent);
+      text-transform:uppercase;
+      font-weight:800;
+      letter-spacing:.14em;
+      font-size:.85rem;
+      margin-bottom:12px;
+    }
+    .gradientText{
+      background:linear-gradient(90deg,#fff,#8f8f8f);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    /* background orbs */
+    .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.28;z-index:0;pointer-events:none;}
+    .orb1{width:320px;height:320px;background:var(--accent);top:-120px;right:-70px;}
+    .orb2{width:520px;height:520px;background:#333;bottom:-180px;left:-160px;}
+
+    /* grids */
+    .gridHero{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:42px;
+      align-items:center;
+      min-height:86vh;
+    }
+    .gridContact{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:42px;
+      align-items:center;
+    }
+    @media(min-width:992px){
+      .gridHero{grid-template-columns:1.18fr .82fr;}
+      .gridContact{grid-template-columns:.9fr 1.1fr;}
+      section{padding:120px 0;}
+    }
+
+    /* buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px 36px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:800;
+      text-transform:uppercase;
+      font-size:.88rem;
+      letter-spacing:.12em;
+      transition:all .28s ease;
+      position:relative;
+      overflow:hidden;
+      border:none;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btnPrimary{
+      background:var(--text);
+      color:var(--bg);
+      box-shadow:0 0 20px rgba(255,255,255,.18);
+    }
+    .btnPrimary::before{
+      content:"";
+      position:absolute;inset:0;
+      width:0%;
+      background:var(--accent);
+      z-index:-1;
+      transition:width .28s ease;
+    }
+    .btnPrimary:hover{color:#fff;box-shadow:0 0 30px var(--accentGlow);transform:translateY(-2px);}
+    .btnPrimary:hover::before{width:100%;}
+    .btnGhost{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      color:#fff;
+    }
+    .btnGhost:hover{border-color:rgba(255,255,255,.35);transform:translateY(-2px);}
+
+    /* images */
+    .heroImgWrap{
+      position:relative;
+      height:60vh;
+      width:100%;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 20px 55px -12px rgba(0,0,0,.86);
+      transform:perspective(1000px) rotateY(-6deg);
+      transition:transform .5s ease;
+      border:1px solid rgba(255,255,255,.06);
+      background:#0b0b0b;
+    }
+    @media(min-width:992px){
+      .heroImgWrap{height:78vh;}
+      .heroImgWrap:hover{transform:perspective(1000px) rotateY(0deg);}
+    }
+    .heroImg{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%) contrast(112%) brightness(.9);
+      transition:filter .5s ease, transform .5s ease;
+      transform:scale(1.01);
+    }
+    .heroImgWrap:hover .heroImg{filter:grayscale(0%) contrast(100%);transform:scale(1.04);}
+    .imgOverlay{
+      position:absolute;left:0;bottom:0;width:100%;height:42%;
+      background:linear-gradient(to top,var(--bg),transparent);
+    }
+
+    .ctaImg{
+      width:100%;
+      border-radius:22px;
+      filter:contrast(112%) saturate(0);
+      transition:all .45s ease;
+      box-shadow:-20px 20px 65px rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .ctaImg:hover{filter:contrast(112%) saturate(1);transform:translateY(-10px);}
+
+    /* marquee bar */
+    .bar{
+      background:#111;
+      padding:18px 0;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .barInner{
+      display:flex;
+      justify-content:space-around;
+      flex-wrap:wrap;
+      gap:14px;
+      text-transform:uppercase;
+      font-size:.9rem;
+      font-weight:800;
+      color:#565656;
+      letter-spacing:.08em;
+    }
+
+    /* stats */
+    .stats{
+      margin-top:46px;
+      padding-top:22px;
+      border-top:1px solid var(--line);
+      display:flex;
+      gap:22px;
+      flex-wrap:wrap;
+      max-width:520px;
+    }
+    .stat strong{display:block;font-size:2rem;color:#fff;line-height:1;}
+    .stat span{display:block;font-size:.85rem;color:#777;margin-top:6px;}
+
+    /* cards */
+    .cards{
+      margin-top:46px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:22px;
+    }
+    .card{
+      background:var(--card);
+      padding:26px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      transition:transform .25s ease, border-color .25s ease;
+    }
+    .card:hover{transform:translateY(-6px);border-color:rgba(91,77,212,.65);}
+    .num{color:var(--accent);font-weight:900;font-size:1.2rem;margin-bottom:10px;}
+    .card h4{font-size:1.18rem;margin-bottom:10px;}
+    .card p{margin-bottom:0;color:#b0b0b0;font-size:1rem;}
+
+    /* proof section */
+    .proof{
+      background:linear-gradient(180deg, rgba(18,18,18,.7), rgba(5,5,5,1));
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .proofGrid{
+      margin-top:40px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:22px;
+    }
+    @media(min-width:992px){
+      .proofGrid{grid-template-columns:1fr 1fr 1fr;}
+    }
+    .pill{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:#d6d6d6;
+      font-size:.88rem;
+      font-weight:700;
+      margin:8px 10px 0 0;
+    }
+
+    /* form */
+    .formBox{
+      background:var(--card);
+      padding:34px;
+      border-radius:22px;
+      border:1px solid #333;
+    }
+    label{display:block;color:#bdbdbd;font-size:.9rem;margin:12px 0 8px;}
+    input,select,textarea{
+      width:100%;
+      padding:14px 14px;
+      background:#000;
+      border:1px solid #333;
+      color:#fff;
+      border-radius:10px;
+      font-size:1rem;
+      outline:none;
+    }
+    textarea{min-height:110px;resize:vertical;}
+    input:focus,select:focus,textarea:focus{border-color:rgba(91,77,212,.85);box-shadow:0 0 0 3px rgba(91,77,212,.18);}
+    .hint{font-size:.82rem;color:#777;margin-top:14px;text-align:center;}
+    .error{display:none;margin-top:12px;color:#ff6b6b;font-weight:700;font-size:.95rem;}
+
+    /* reveal animation */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    footer{
+      padding:54px 0;
+      text-align:center;
+      border-top:1px solid var(--line);
+    }
+    footer a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(91,77,212,.8);}
+    footer a:hover{border-bottom-color:#fff;}
+  </style>
+</head>
+
+<body>
+  <div class="orb orb1"></div>
+
+  <!-- HERO -->
+  <section>
+    <div class="container">
+      <div class="gridHero">
+        <div class="reveal">
+          <span class="eyebrow">Максим Кобин • стратегия восстановления</span>
+
+          <h1 class="gradientText">ВЫХОД ИЗ<br>ЗАВИСИМОСТИ.<br>ПО-ВЗРОСЛОМУ.</h1>
+
+          <p>
+            Без сказок и “волшебных методик”. Мы убираем самообман, возвращаем дисциплину и собираем новую реальность:
+            <b style="color:#fff">мышление → тело → окружение</b>.
+          </p>
+
+          <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:22px;">
+            <a class="btn btnPrimary" href="#contact">Начать диалог</a>
+            <a class="btn btnGhost" href="#approach">Как работаем</a>
+            <span class="pill">Анонимно</span>
+            <span class="pill">Без морали</span>
+            <span class="pill">Системно</span>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>9+</strong><span>лет практики</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong><span>конфиденциальность</span>
+            </div>
+            <div class="stat">
+              <strong>КПТ</strong><span>логика вместо хаоса</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="heroImgWrap reveal">
+          <img class="heroImg" src="hero.jpg" alt="Максим Кобин" />
+          <div class="imgOverlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bar">
+    <div class="container barInner">
+      <span>Психология</span>
+      <span>Физиология</span>
+      <span>Адаптация</span>
+      <span>Дисциплина</span>
+      <span>Восстановление</span>
+    </div>
+  </div>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <div class="container">
+      <div class="reveal" style="max-width:860px;">
+        <span class="eyebrow">Суть</span>
+        <h2>Трезвость — это не “терпеть”. Это новая система жизни.</h2>
+        <p>
+          Проблема большинства попыток “завязать” — человек меняет вещество, но не меняет причины и среду.
+          Поэтому возвращается в тот же сценарий. Мы ломаем сценарий и строим новый.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card reveal">
+          <div class="num">01.</div>
+          <h4>Голова</h4>
+          <p>КПТ-логика: тяга, триггеры, стыд, самообман. Научишься ловить момент ДО срыва.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="num">02.</div>
+          <h4>Тело</h4>
+          <p>Восстановление биохимии через режим и движение. Без тела “силы воли” не хватает надолго.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="num">03.</div>
+          <h4>Окружение и план</h4>
+          <p>Работа, отношения, деньги, границы. Собираем конкретный план, а не мотивационные речи.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="proof">
+    <div class="container">
+      <div class="reveal" style="max-width:900px;">
+        <span class="eyebrow">Кому подходит</span>
+        <h2>Если ты устал от качелей — это сюда.</h2>
+        <p>Когда “я сам справлюсь” уже не работает, нужна стратегия: короткая, честная и исполнимая.</p>
+      </div>
+
+      <div class="proofGrid">
+        <div class="card reveal">
+          <h3>Для себя</h3>
+          <p>Тяга, срывы, тревога, пустота, злость. Разберём, что реально управляет поведением и где рычаг.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Для близких</h3>
+          <p>Созависимость, контроль, истощение. Научишься помогать так, чтобы не разрушать себя.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Для “после рехаба”</h3>
+          <p>Самый опасный этап — выход. Ставим опоры: режим, окружение, план, ответственность.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="orb orb2"></div>
+    <div class="container">
+      <div class="gridContact">
+        <div class="reveal" style="position:relative;">
+          <img class="ctaImg" src="cta.jpg" alt="Максим Кобин" />
+          <div style="position:absolute;bottom:22px;left:-14px;background:var(--bg);padding:14px 18px;border-radius:14px;border:1px solid rgba(91,77,212,.9);box-shadow:0 10px 34px rgba(0,0,0,.55);">
+            <div style="color:#fff;font-weight:900;">Готов начать?</div>
+            <div style="color:#a8a8a8;font-size:.9rem;margin-top:3px;">Оставь контакт — заявка улетит в Telegram</div>
+          </div>
+        </div>
+
+        <div class="formBox reveal">
+          <span class="eyebrow">Первый шаг</span>
+          <h2>Оставь заявку</h2>
+          <p>Я прочитаю лично. Без баз данных, без “менеджеров”.</p>
+
+          <form id="contactForm">
+            <label for="name">Имя</label>
+            <input id="name" type="text" placeholder="Как к тебе обращаться?" required>
+
+            <label for="contactField">Telegram или телефон</label>
+            <input id="contactField" type="text" placeholder="@username или +7..." required>
+
+            <label for="topic">Тема</label>
+            <select id="topic">
+              <option>Мне нужна помощь</option>
+              <option>Помощь близкому</option>
+              <option>После рехаба / удержание трезвости</option>
+              <option>Просто вопрос</option>
+            </select>
+
+            <label for="msg">Коротко (необязательно)</label>
+            <textarea id="msg" placeholder="Что происходит сейчас?"></textarea>
+
+            <div id="err" class="error">Укажи контакт: Telegram или телефон.</div>
+
+            <button type="submit" class="btn btnPrimary" style="width:100%;margin-top:14px;">Отправить</button>
+          </form>
+
+          <div class="hint">🔒 Заявка приходит сразу в Telegram. Данные не сохраняются на сайте.</div>
+
+          <div style="text-align:center;margin-top:18px;">
+            <a class="btn btnGhost" href="https://t.me/Maksim_doctor" target="_blank" rel="noopener">Написать в Telegram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <h3 style="margin-bottom:14px;">Максим Кобин</h3>
+      <div class="muted" style="margin-bottom:14px;">Стратег по восстановлению личности</div>
+      <a href="https://t.me/Maksim_doctor" target="_blank" rel="noopener">@Maksim_doctor</a>
+      <div class="muted" style="margin-top:22px;font-size:.85rem;">
+        © 2026. Информация на сайте не является медицинской услугой и публичной офертой.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 1) Reveal animation
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // 2) Telegram lead sending via Cloudflare Worker
+    const WORKER_URL = "https://young-breeze-6c59.anonosya.workers.dev";
+
+    const form = document.getElementById('contactForm');
+    const err = document.getElementById('err');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const contact = document.getElementById('contactField').value.trim();
+      const topic = document.getElementById('topic').value;
+      const msg = document.getElementById('msg').value.trim();
+
+      if (!contact || contact.length < 3) {
+        err.style.display = "block";
+        return;
+      }
+      err.style.display = "none";
+
+      const btn = form.querySelector('button[type="submit"]');
+      const old = btn.textContent;
+      btn.textContent = "ОТПРАВЛЯЮ...";
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(WORKER_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            contact,
+            topic,
+            msg,
+            page: location.href
+          })
+        });
+
+        const data = await res.json();
+        if (!data.ok) throw new Error("send_failed");
+
+        form.innerHTML = `
+          <div style="text-align:center; padding: 34px 0;">
+            <div style="font-size: 3.6rem; margin-bottom: 10px;">✅</div>
+            <h3 style="margin-bottom:10px;">Заявка отправлена</h3>
+            <p style="color:#b8b8b8; max-width:60ch; margin:0 auto;">
+              Сообщение уже в Telegram. Я отвечу тебе.
+            </p>
+          </div>
+        `;
+      } catch (e2) {
+        btn.textContent = old;
+        btn.disabled = false;
+        alert("Не получилось отправить. Напиши в Telegram: @Maksim_doctor");
+      }
+    });
+  </script>
+</body>
+</html>
